@@ -1,0 +1,52 @@
+info:
+  description: Spring Cloud Samples
+
+spring:
+  rabbitmq:
+    host: localhost
+
+
+#endpoints:
+#  restart: enabled
+
+
+eureka:
+  instance:
+#    hostname: localhost
+#    non-secure-port: 80
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  config: ${LOGBACK_CONFIG:http://${security.user.name:}:${security.user.password:}@localhost:8888/${spring.application.name}/${spring.profiles.active:default}/${spring.cloud.config.label:master}/logback.xml}
+  level:
+    org.springframework.boot: warn
+    org.springframework.web: warn
+    org.springframework.cloud: debug
+  path: ${spring.application.name}
+
+security:
+  user:
+    name: user # Default user name
+    password: password #default password
+
+#---
+#spring:
+#  profiles: peer1
+#eureka:
+#  instance:
+#    hostname: peer1
+#---
+#spring:
+#  profiles: peer2
+#eureka:
+#  instance:
+#    hostname: peer2
+#---
+#spring:
+#  profiles: peer3
+#eureka:
+#  instance:
+#    hostname: peer3

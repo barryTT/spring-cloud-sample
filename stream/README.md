@@ -1,0 +1,1 @@
+Spring Cloud Stream is a framework for building message-driven microservices

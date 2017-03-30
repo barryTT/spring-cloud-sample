@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: sleuth-zipkin-collector
+
+  cloud:
+    config:
+      uri: http://localhost:8888
+# If you prefer to use DiscoveryClient to locate the Config Server, you can do that by setting spring.cloud.config.discovery.enabled=true (default "false")
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/

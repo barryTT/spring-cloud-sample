@@ -1,0 +1,33 @@
+
+spring:
+  cloud:
+    stream:
+#      default-binder: rabbit1
+      bindings:
+        input:
+#          destination: foo
+          destination: trace
+          binder: rabbit1
+        output:
+#          destination: foo
+          destination: trace
+          binder: rabbit1
+      binders:
+#        redis1:
+#          type: redis
+#          environment:
+#            spring:
+#              redis:
+#                  host: 192.168.137.101
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+#                  host: 192.168.137.101
+                host: localhost
+
+server:
+  port: 0
+
+

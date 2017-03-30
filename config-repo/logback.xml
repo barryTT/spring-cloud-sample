@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2016. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+	<!--<springProperty scope="context" name="LOG_PATH" source="logging.path" defaultValue="log"/>-->
+	<property name="LOG_PATH" value="\${LOG_PATH:-\${LOG_TEMP:-\${java.io.tmpdir:-/tmp}}}" />
+	<!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%-5level] [%thread] %X{client} %X{trace_id} %d{HH:mm:ss} %logger => %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 系统日志文件输出 -->
+	<appender name="file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_PATH}/file.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_PATH}/file.%d{yyyy-MM-dd}.log</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%-5level] [%thread] %X{client} %X{trace_id} %d{HH:mm:ss} %logger{36} => %msg%n</pattern>
+		</layout>
+	</appender>
+
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core" level="info"/>
+	<logger name="org.springframework.beans" level="info"/>
+	<logger name="org.springframework.context" level="info"/>
+	<logger name="org.springframework.web" level="info"/>
+	<logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="DEBUG"/>
+	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor" level="DEBUG"/>
+	<logger name="org.springframework.boot" level="info" />
+	<logger name="org.springframework.aop" level="info" />
+	<logger name="org.springframework.jmx" level="info" />
+	<logger name="org.springframework.jdbc" level="info" />
+	<logger name="org.springframework.transaction" level="info" />
+	<logger name="ch.qos.logback" level="ERROR" />
+	<logger name="org.activiti" level="info" />
+	<logger name="org.hibernate.validator" level="info" />
+	<logger name="org.apache.shiro" level="info"/>
+	<logger name="org.apache.tomcat" level="INFO"/>
+	<logger name="org.apache.catalina" level="INFO"/>
+	<logger name="org.apache.coyote" level="INFO"/>
+	<logger name="org.apache.http" level="INFO"/>
+	<logger name="com.sun.jersey" level="INFO"/>
+	<logger name="org.mybatis" level="info"/>
+	<!-- 日志级别 -->
+	<root level="debug">
+		<!--<appender-ref ref="console" />-->
+		<appender-ref ref="file" />
+	</root>
+</configuration>

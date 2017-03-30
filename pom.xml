@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.springframework.cloud.sample</groupId>
+    <artifactId>spring-cloud-sample</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <!--<version>1.3.7.RELEASE</version>-->
+        <version>1.4.5.RELEASE</version>
+    </parent>
+
+    <modules>
+        <module>eureka-server</module>
+        <module>eureka-consumer</module>
+        <module>eureka-producer</module>
+        <module>config-server</module>
+        <module>hystrix-client</module>
+        <module>ribbon</module>
+        <module>hystrix-dashboard</module>
+        <module>stream</module>
+        <module>test</module>
+        <module>eureka-consumer</module>
+        <module>sleuth-zipkin-collector</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <!--<version>Brixton.RELEASE</version>-->
+                <!--<version>Brixton.SR5</version>-->
+                <!--<version>Brixton.SR7</version>-->
+                <version>Camden.SR6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-config</artifactId>-->
+        <!--</dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+        </dependency>
+        -->
+        <!--<dependency>-->
+            <!--<groupId>org.aspectj</groupId>-->
+            <!--<artifactId>aspectjrt</artifactId>-->
+            <!--<version>${aspectj.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.projectlombok</groupId>-->
+            <!--<artifactId>lombok</artifactId>-->
+            <!--<version>1.16.12</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+    </dependencies>
+
+</project>

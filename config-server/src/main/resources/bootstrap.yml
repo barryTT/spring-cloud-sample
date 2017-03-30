@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: configserver
+
+  rabbitmq:
+    host: localhost
+
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - enp0s3
+        - enp0s8
+#        - enp0s9
+        - docker0
+
+
