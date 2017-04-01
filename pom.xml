@@ -25,7 +25,6 @@
         <module>ribbon</module>
         <module>hystrix-dashboard</module>
         <module>stream</module>
-        <module>test</module>
         <module>eureka-consumer</module>
         <module>sleuth-zipkin-collector</module>
     </modules>

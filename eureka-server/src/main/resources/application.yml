@@ -35,7 +35,6 @@ logging:
     org.springframework.web: info
     org.springframework.cloud: debug
     com.netflix.discovery: 'off'
-  path: ${spring.application.name}
 
 
 #---

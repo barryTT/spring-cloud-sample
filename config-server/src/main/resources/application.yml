@@ -7,7 +7,6 @@ logging:
     com.netflix.discovery: info
     org.apache.catalina: error
     org.springframework.cloud: debug
-  path: ${spring.application.name}
 
 eureka:
   instance:
@@ -20,6 +19,7 @@ eureka:
 #    leaseRenewalIntervalInSeconds: 10
 #    ip-address: 192.168.137.101
   client:
+# must be in application.yml or application.properties
     healthcheck:
       enabled: true
     serviceUrl:
@@ -33,6 +33,7 @@ spring:
       server:
         git:
           uri: https://github.com/barryTT/spring-cloud-sample.git
+          search-paths: config-repo
 #          basedir: target/config
 # If you prefer to use DiscoveryClient to locate the Config Server, you can do that by setting spring.cloud.config.discovery.enabled=true (default "false")
 #      discovery:
@@ -43,10 +44,10 @@ spring:
 # To use the default Spring Boot configured HTTP Basic security, just include Spring Security on the classpath (e.g. through spring-boot-starter-security).
 # The default is a username of "user" and a randomly generated password, which isn’t going to be very useful in practice,
 # so we recommend you configure the password (via security.user.password) and encrypt it (see below for instructions on how to do that).
-security:
-  user:
-    name: user # Default user name
-    password: password #default password
+#security:
+#  user:
+#    name: user # Default user name
+#    password: password #default password
 #
 #---
 #spring:

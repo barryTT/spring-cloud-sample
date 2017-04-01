@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: eurekaserver
+    name: eurekaServer
 #  cloud:
 #    config:
 #      uri: http://192.168.137.101:8888
