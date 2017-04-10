@@ -27,6 +27,7 @@
         <module>stream</module>
         <module>eureka-consumer</module>
         <module>sleuth-zipkin-collector</module>
+        <module>turbine</module>
     </modules>
 
     <dependencyManagement>

@@ -1,6 +1,3 @@
-info:
-  description: Spring Cloud Samples
-
 spring:
   rabbitmq:
     host: localhost
