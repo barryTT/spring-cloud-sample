@@ -28,6 +28,7 @@
         <module>eureka-consumer</module>
         <module>sleuth-zipkin-collector</module>
         <module>turbine</module>
+        <module>zuul</module>
     </modules>
 
     <dependencyManagement>

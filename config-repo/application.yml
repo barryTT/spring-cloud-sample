@@ -23,7 +23,7 @@ logging:
   level:
     org.springframework.boot: warn
     org.springframework.web: warn
-    org.springframework.cloud: debug
+    org.springframework.cloud: info
 
 
 #---

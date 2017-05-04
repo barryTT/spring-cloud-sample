@@ -1,0 +1,25 @@
+info:
+  component: zuul
+
+server:
+  port: 8765
+
+zuul:
+  routes:
+    consumer: /consumer/**
+    provider: /provider/**
+    zuulserver: /self/**
+
+
+logging:
+  level:
+    root: info
+    org.springframework.web: debug
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+# must be in application.yml or application.properties
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
