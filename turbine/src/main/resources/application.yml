@@ -8,19 +8,19 @@ management:
 logging:
   level:
     root: info
-    org.springframework.integration: debug
+#    org.springframework.integration: debug
 
 
-spring:
-  rabbitmq:
-    host: localhost
+#spring:
+#  rabbitmq:
+#    host: localhost
 
-eureka:
-  instance:
-    non-secure-port: ${management.port}
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+#eureka:
+#  instance:
+#    non-secure-port: ${management.port}
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
 
 
 

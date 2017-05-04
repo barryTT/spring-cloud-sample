@@ -1,6 +1,6 @@
 spring:
   application:
     name: hystrixDashboard
-  cloud:
-    config:
-      uri: http://localhost:8888
+#  cloud:
+#    config:
+#      uri: http://10.69.205.38:9999/configServer
