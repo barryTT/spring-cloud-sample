@@ -38,15 +38,8 @@
             <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.zipkin</groupId>
-            <artifactId>zipkin-ui</artifactId>
-            <version>1.40.2</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>io.zipkin.java</groupId>
             <artifactId>zipkin-autoconfigure-ui</artifactId>
-            <!--<version>1.16.2</version>-->
             <scope>runtime</scope>
         </dependency>
         <dependency>
