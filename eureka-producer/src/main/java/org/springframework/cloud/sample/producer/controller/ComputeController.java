@@ -1,4 +1,4 @@
-package org.springframework.cloud.sample.eureka.controller;
+package org.springframework.cloud.sample.producer.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class ComputeController {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+
+    private final SecureRandom secureRandom = new SecureRandom();
 
     @Autowired
     private DiscoveryClient client;
@@ -25,13 +30,31 @@ public class ComputeController {
     public Integer add(@RequestParam Integer a, @RequestParam Integer b) {
         ServiceInstance instance = client.getLocalServiceInstance();
         Integer r = a + b;
-        logger.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
+        LOGGER.info("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
         return r;
     }
 
     @RequestMapping(value = "/send" ,method = RequestMethod.POST)
     public String sendMessage(ArrayList<String> list) {
-        return "ok";
+
+        int random = secureRandom.nextInt(99);
+
+        LOGGER.info("random number:{}", random);
+
+        if (random > 90) {
+            throw new RuntimeException("random exception");
+        }
+
+        return String.format("producer random:%d", random);
+    }
+
+    @RequestMapping(value = "/exception" ,method = RequestMethod.GET)
+    public String exception(HttpServletRequest request, HttpServletResponse response) {
+
+        response.setHeader("X_error_code", "0");
+        response.setStatus(HttpServletResponse.SC_ACCEPTED);
+
+        return "fail";
     }
 
 }

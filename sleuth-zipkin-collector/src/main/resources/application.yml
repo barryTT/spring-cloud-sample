@@ -2,20 +2,24 @@ server:
   port: 9411
 
 spring:
-  cloud:
-    stream:
-      binders:
-        rabbit1:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
+#  rabbitmq:
+#    host: localhost
+
+#spring:
+#  cloud:
+#    stream:
+#      binders:
+#        rabbit1:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: localhost
 
   sleuth:
     enabled: false
 
 zipkin:
   storage:
-    type: mem
+    type: mysql
 

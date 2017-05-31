@@ -1,10 +1,32 @@
 server:
   port: 5002
+#management:
+#  port: 8992
+
 spring:
   zipkin:
     base-url: http://localhost:9411/
-    sleuth:
-      sampler:
-        percentage: 1.0
+#    sleuth:
+#      sampler:
+#        percentage: 1.0
+logging:
+  level:
+    root: info
+    org.springframework.cloud.sleuth: info
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    metadata-map:
+#      management.port: ${management.port}
+
+eureka:
+  instance:
+    metadata-map:
+      zone: activeZone
+  client:
+    prefer-same-zone-eureka: true
+
+
 
 

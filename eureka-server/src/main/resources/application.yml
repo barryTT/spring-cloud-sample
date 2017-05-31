@@ -1,6 +1,8 @@
-eureka:
-  instance:
-    prefer-ip-address: true
+server:
+  port: 8761
+#eureka:
+#  instance:
+#    prefer-ip-address: true
 #    hostname: localhost
 #    lease-renewal-interval-in-seconds: 1
 #    lease-expiration-duration-in-seconds: 2
@@ -9,18 +11,19 @@ eureka:
 
 
 #  server:
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 4000
 #    wait-time-in-ms-when-sync-empty: 0
 #    number-of-replication-retries: 0
-#    enable-self-preservation: false
 #    renewal-percent-threshold: 0.01
 
-  client:
-    register-with-eureka: false # Standalone Eureka Server
-    fetch-registry: false # Standalone Eureka Server
+#  client:
+#    register-with-eureka: false # Standalone Eureka Server
+#    fetch-registry: false # Standalone Eureka Server
 #    registry-fetch-interval-seconds: 1
 #    initial-instance-info-replication-interval-seconds: 2
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
 
 
 #  dashboard:
@@ -32,33 +35,38 @@ spring:
 
 logging:
   level:
-    org.springframework.web: info
-    org.springframework.cloud: debug
-    com.netflix.discovery: 'off'
+    root: debug
+#    org.springframework.web: info
+#    org.springframework.cloud: debug
+#    com.netflix.discovery: 'off'
 
 
-#---
-#spring:
-#  profiles: peer1
-#eureka:
-#  instance:
-#    hostname: peer1
+---
+spring:
+  profiles: peer1
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: peer1
 #    prefer-ip-address: true
-#  client:
-#    service-url:
-#      defaultZone: http://peer2:8762/eureka/,http://peer3:8763/eureka/
+  client:
+    service-url:
+      defaultZone: http://peer2:8762/eureka/
 
-#---
-#spring:
-#  profiles: peer2
-#eureka:
-#  instance:
-#    hostname: peer2
+---
+spring:
+  profiles: peer2
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: peer2
 #    prefer-ip-address: true
-#
-#  client:
-#    service-url:
-#      defaultZone: http://peer1:8761/eureka/,http://peer3:8763/eureka/
+
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/
 #---
 #spring:
 #  profiles: peer3

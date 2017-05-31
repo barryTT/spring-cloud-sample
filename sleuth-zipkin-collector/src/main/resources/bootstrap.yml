@@ -2,9 +2,14 @@ spring:
   application:
     name: sleuth-zipkin-collector
 
+  profiles:
+    active: native
+    include: mysql
+
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: ${CONFIG_SERVER_URI:http://10.125.159.41:9999/configServer}
+#      uri: ${CONFIG_SERVER_URI:http://10.69.205.38:9999/configServer}
 # If you prefer to use DiscoveryClient to locate the Config Server, you can do that by setting spring.cloud.config.discovery.enabled=true (default "false")
 
 #eureka:

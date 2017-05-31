@@ -8,6 +8,9 @@ spring:
 #      discovery:
 #        enabled: true
       uri: http://localhost:8888
+      fail-fast: true
+
+
     inetutils:
       ignored-interfaces:
         - lo
@@ -15,3 +18,8 @@ spring:
         - enp0s8
 #        - enp0s9
         - docker0
+health:
+  config:
+    enabled: true
+    time-to-live: 60000
+

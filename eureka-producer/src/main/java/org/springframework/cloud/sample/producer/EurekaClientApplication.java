@@ -1,4 +1,4 @@
-package org.springframework.cloud.sample.eureka;
+package org.springframework.cloud.sample.producer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

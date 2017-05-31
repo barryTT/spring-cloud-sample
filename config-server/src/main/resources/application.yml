@@ -4,9 +4,26 @@ server:
 
 logging:
   level:
+    root: info
     com.netflix.discovery: info
-    org.apache.catalina: error
     org.springframework.cloud: debug
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  instance:
+#    hostname: bj05-ic-jks01
+#    lease-renewal-interval-in-seconds: 1
+#    lease-expiration-duration-in-seconds: 2
+#    status-page-url-path: ${server.context-path}/info
+#    health-check-url-path: ${server.context-path}/health
+
+
+#  server:
+#    wait-time-in-ms-when-sync-empty: 0
+#    number-of-replication-retries: 0
+#    enable-self-preservation: false
+#    renewal-percent-threshold: 0.01
 
 eureka:
   instance:
@@ -31,14 +48,22 @@ spring:
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/barryTT/spring-cloud-sample.git
-          search-paths: config-repo
+        native:
+          search-locations: file:../config-repo
+          fail-on-error: true
+      fail-fast: true
+
+  profiles:
+    active: native
+#      server:
+#        git:
+#          uri: https://github.com/barryTT/spring-cloud-sample.git
+#          search-paths: config-repo
 #          basedir: target/config
+#          clone-on-start: true
 # If you prefer to use DiscoveryClient to locate the Config Server, you can do that by setting spring.cloud.config.discovery.enabled=true (default "false")
 #      discovery:
 #        enabled: true
-
 
 
 # To use the default Spring Boot configured HTTP Basic security, just include Spring Security on the classpath (e.g. through spring-boot-starter-security).
