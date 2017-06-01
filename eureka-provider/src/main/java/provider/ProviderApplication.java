@@ -1,23 +1,17 @@
-package producer;
+package provider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
-import org.springframework.context.annotation.Bean;
 
 /**
- * Created by barry on 2016/8/12.
+ * Created by barry on 2017/6/1.
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class EurekaClientApplication {
+public class ProviderApplication {
     public static void main(String args[]) {
-        SpringApplication.run(EurekaClientApplication.class, args);
+        SpringApplication.run(ProviderApplication.class, args);
 //        new SpringApplicationBuilder(SampleApplication.class).web(true).run(args);
     }
-//    @Bean
-//    public AlwaysSampler defaultSampler() {
-//        return new AlwaysSampler();
-//    }
 }

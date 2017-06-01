@@ -1,4 +1,4 @@
-package producer.controller;
+package provider.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class ComputeController {
