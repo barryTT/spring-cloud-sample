@@ -1,4 +1,4 @@
-package org.springframework.cloud.sample.producer.controller;
+package producer.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +45,7 @@ public class ComputeController {
             throw new RuntimeException("random exception");
         }
 
-        return String.format("producer random:%d", random);
+        return String.format("provider random:%d", random);
     }
 
     @RequestMapping(value = "/exception" ,method = RequestMethod.GET)

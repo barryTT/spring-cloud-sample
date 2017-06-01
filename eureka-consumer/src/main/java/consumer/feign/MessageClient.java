@@ -1,8 +1,6 @@
-package org.springframework.cloud.sample.consumer;
+package consumer.feign;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.cloud.sample.consumer.HystrixClientFallbackFactory;
-import org.springframework.cloud.sample.consumer.MessageConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +13,8 @@ import java.util.ArrayList;
 @FeignClient(
         name = "provider",
 //        fallback = HystrixClientFallback.class
-        fallbackFactory = HystrixClientFallbackFactory.class
-//        configuration = MessageConfiguration.class
+        fallbackFactory = HystrixClientFallbackFactory.class,
+        configuration = MessageConfiguration.class
 )
 public interface MessageClient {
 

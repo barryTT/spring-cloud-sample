@@ -1,4 +1,4 @@
-package org.springframework.cloud.sample.producer;
+package producer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,8 +16,8 @@ public class EurekaClientApplication {
         SpringApplication.run(EurekaClientApplication.class, args);
 //        new SpringApplicationBuilder(SampleApplication.class).web(true).run(args);
     }
-    @Bean
-    public AlwaysSampler defaultSampler() {
-        return new AlwaysSampler();
-    }
+//    @Bean
+//    public AlwaysSampler defaultSampler() {
+//        return new AlwaysSampler();
+//    }
 }

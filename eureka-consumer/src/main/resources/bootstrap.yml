@@ -7,13 +7,14 @@ spring:
 # If you prefer to use DiscoveryClient to locate the Config Server, you can do that by setting spring.cloud.config.discovery.enabled=true (default "false")
       discovery:
         enabled: true
+      fail-fast: true
     inetutils:
       ignored-interfaces:
         - lo
         - enp0s3
         - enp0s8
 #        - enp0s9
-        - docker0∂
+        - docker0
 
 # must be in bootstrap.yml
 eureka:

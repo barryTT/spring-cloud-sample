@@ -1,10 +1,7 @@
-package org.springframework.cloud.sample.consumer;
-
-
-import org.springframework.stereotype.Component;
+package consumer.feign;
 
 import java.util.ArrayList;
-@Component
+
 public class HystrixClientFallback implements MessageClient {
 
     @Override

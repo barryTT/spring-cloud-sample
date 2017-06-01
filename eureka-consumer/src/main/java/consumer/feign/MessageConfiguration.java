@@ -1,7 +1,5 @@
-package org.springframework.cloud.sample.consumer;
+package consumer.feign;
 
-import org.springframework.cloud.sample.consumer.HystrixClientFallback;
-import org.springframework.cloud.sample.consumer.HystrixClientFallbackFactory;
 import org.springframework.context.annotation.Bean;
 
 /**

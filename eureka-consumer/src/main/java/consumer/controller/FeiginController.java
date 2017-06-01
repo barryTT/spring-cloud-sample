@@ -1,6 +1,7 @@
-package org.springframework.cloud.sample.consumer;
+package consumer.controller;
 
 import com.google.common.collect.Lists;
+import consumer.feign.MessageClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.client.ServiceInstance;
@@ -40,7 +41,7 @@ public class FeiginController {
             throw new RuntimeException("random exception");
         }
 
-        return String.format("consumer random:%d", random) + client.sendMessage(Lists.<String>newArrayList());
+        return String.format("consumer random:%d, %s", random, client.sendMessage(Lists.<String>newArrayList()));
     }
 
     @RequestMapping(path = "/exception")
