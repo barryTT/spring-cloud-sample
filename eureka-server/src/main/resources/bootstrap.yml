@@ -1,13 +1,8 @@
 spring:
   application:
     name: eurekaServer
-#  cloud:
-#    config:
-#      uri: http://192.168.137.101:8888
-#      username: user
-#      password: password
-#      discovery:
-#        enabled: true
+
+  cloud:
     inetutils:
 #      default-ip-address: 192.168.137.101
       ignored-interfaces:

@@ -1,12 +1,26 @@
+info:
+  applicationName: Config Server
+  description: Spring Cloud Samples
+
 server:
   port: 8888
 
+management:
+  security:
+    enabled: true # default true
+  context-path: /_admin
+
+# To use the default Spring Boot configured HTTP Basic security, just include Spring Security on the classpath (e.g. through spring-boot-starter-security).
+# The default is a username of "user" and a randomly generated password, which isn’t going to be very useful in practice,
+# so we recommend you configure the password (via security.user.password) and encrypt it (see below for instructions on how to do that).
+security:
+  user:
+    name: config # Default user name
+    password: password #default password
 
 logging:
   level:
     root: info
-    com.netflix.discovery: info
-    org.springframework.cloud: debug
 
 #eureka:
 #  instance:
@@ -28,10 +42,13 @@ logging:
 eureka:
   instance:
     prefer-ip-address: true
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+    home-page-url-path: ${management.context-path}/
     metadata-map:
 # config server parameter
-      user: user
-      password: password
+      user: ${security.user.name}
+      password: ${security.user.password}
 #      configPath: /
 #    leaseRenewalIntervalInSeconds: 10
 #    ip-address: 192.168.137.101
@@ -49,9 +66,12 @@ spring:
     config:
       server:
         native:
-          search-locations: file:../config-repo
+          search-locations: file:///${user.dir}/../config-repo
           fail-on-error: true
       fail-fast: true
+
+  rabbitmq:
+    host: localhost
 
   profiles:
     active: native
@@ -66,13 +86,6 @@ spring:
 #        enabled: true
 
 
-# To use the default Spring Boot configured HTTP Basic security, just include Spring Security on the classpath (e.g. through spring-boot-starter-security).
-# The default is a username of "user" and a randomly generated password, which isn’t going to be very useful in practice,
-# so we recommend you configure the password (via security.user.password) and encrypt it (see below for instructions on how to do that).
-#security:
-#  user:
-#    name: user # Default user name
-#    password: password #default password
 #
 #---
 #spring:
