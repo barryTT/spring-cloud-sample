@@ -17,10 +17,15 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0
+    stream:
+      group: zipkin
+    scheduled:
+      skip-pattern: org.springframework.cloud.netflix.hystrix.stream.HystrixStreamTask
 
 logging:
   level:
     root: info
+    org.apache.http.wire: debug
 
 #eureka:
 #  instance:
@@ -38,5 +43,21 @@ logging:
 #feign:
 #  hystrix:
 #    enabled: true
+
+feign:
+  httpclient:
+    enabled: true
+
+ribbon:
+  ReadTimeout: 45000
+  ConnectTimeout: 35000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 45000
 
 

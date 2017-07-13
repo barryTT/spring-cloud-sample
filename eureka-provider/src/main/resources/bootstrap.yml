@@ -23,9 +23,7 @@ health:
     time-to-live: 60000
 # must be in bootstrap.yml
 eureka:
-#    lease-renewal-interval-in-seconds: 1
-#    lease-expiration-duration-in-seconds: 2
-#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+  instance:
+    metadata-map:
+      zone: zone1
+      weight: 10

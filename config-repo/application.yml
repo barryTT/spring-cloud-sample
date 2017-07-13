@@ -1,7 +1,9 @@
 spring:
   rabbitmq:
     host: localhost
-
+  cloud:
+    bus:
+      destination: bus
 
 #endpoints:
 #  restart: enabled
@@ -12,18 +14,30 @@ eureka:
 #    hostname: localhost
 #    non-secure-port: 80
     prefer-ip-address: true
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+    home-page-url-path: ${management.context-path}/
+#    lease-renewal-interval-in-seconds: 1
+#    lease-expiration-duration-in-seconds: 2
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
+    region: region1
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      zone1: http://peer1:8761/eureka/
+      zone2: http://peer2:8762/eureka/
+    prefer-same-zone-eureka: true
+    availability-zones:
+      region1: ${ACTIVE_ZONE:defaultZone}
+
     healthcheck:
       enabled: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
 
 logging:
 #  config: ${LOGBACK_CONFIG:http://${security.user.name:}:${security.user.password:}@localhost:8888/${spring.application.name}/${spring.profiles.active:default}/${spring.cloud.config.label:master}/logback.xml}
   level:
-    org.springframework.boot: warn
-    org.springframework.web: warn
-    org.springframework.cloud: info
+    root: info
+    org.springframework.cloud.config.client.ConfigServicePropertySourceLocator: warn
 
 
 #---

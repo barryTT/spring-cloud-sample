@@ -2,16 +2,13 @@ info:
   applicationName: Eureka Server
   description: Spring Cloud Samples
 
-server:
-  port: 8761
-
 management:
   security:
     enabled: false # default true
   context-path: /_admin
 
 eureka:
-  datacenter: meipro
+  datacenter: eureka
   environment: development
 #  instance:
 #    prefer-ip-address: true
@@ -30,17 +27,13 @@ eureka:
 #    enable-self-preservation: false
 #    renewal-percent-threshold: 0.01
 
-  client:
-    register-with-eureka: false # Standalone Eureka Server
-    fetch-registry: false # Standalone Eureka Server
+#  client:
+#    register-with-eureka: false # Standalone Eureka Server
+#    fetch-registry: false # Standalone Eureka Server
 #    registry-fetch-interval-seconds: 1
 #    initial-instance-info-replication-interval-seconds: 2
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-
-
-#  dashboard:
-#    path: /dashboard
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
 
 spring:
   rabbitmq:
@@ -54,35 +47,62 @@ logging:
 #    com.netflix.discovery: 'off'
 
 
-#---
-#spring:
-#  profiles: peer1
-#eureka:
-#  instance:
-#    hostname: peer1
-#    prefer-ip-address: true
-#  client:
-#    service-url:
-#      defaultZone: http://peer2:8762/eureka/,http://peer3:8763/eureka/
+---
+spring:
+  profiles: standalone
 
-#---
-#spring:
-#  profiles: peer2
-#eureka:
-#  instance:
-#    hostname: peer2
-#    prefer-ip-address: true
-#
-#  client:
-#    service-url:
-#      defaultZone: http://peer1:8761/eureka/,http://peer3:8763/eureka/
-#---
-#spring:
-#  profiles: peer3
-#eureka:
-#  instance:
-#    hostname: peer3
-#    prefer-ip-address: true
-#  client:
-#    service-url:
-#      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false # Standalone Eureka Server
+    fetch-registry: false # Standalone Eureka Server
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+---
+spring:
+  profiles: peer1
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: peer1
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://peer2:8762/eureka/,http://peer3:8763/eureka/
+
+---
+spring:
+  profiles: peer2
+
+server:
+  port: 8762
+
+eureka:
+  instance:
+    hostname: peer2
+    prefer-ip-address: true
+
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/,http://peer3:8763/eureka/
+
+---
+spring:
+  profiles: peer3
+
+server:
+  port: 8763
+
+eureka:
+  instance:
+    hostname: peer3
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/

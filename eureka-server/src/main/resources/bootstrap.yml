@@ -2,6 +2,9 @@ spring:
   application:
     name: eurekaServer
 
+  profiles:
+    active: standalone
+
   cloud:
     inetutils:
 #      default-ip-address: 192.168.137.101

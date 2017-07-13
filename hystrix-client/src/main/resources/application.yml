@@ -1,10 +1,22 @@
 server:
   port: 9000
 
-eureka:
-#  instance:
-#    non-secure-port: 80
-#    hostname: localhost
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+
+ribbon:
+  EnableZoneExclusivity: true
+
+provider:
+  ribbon:
+#    EnableZoneAffinity: false
+    ServerListRefreshInterval: 1000
+
+# For demo only allow more hystrix connections
+hystrix:
+  stream:
+    maxConcurrentConnections: 20
+    bus:
+      enabled: true
+management:
+  security:
+    enabled: false
+  context-path: /_admin

@@ -1,0 +1,12 @@
+
+ribbon:
+  ReadTimeout: 15000
+  ConnectTimeout: 5000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 45000

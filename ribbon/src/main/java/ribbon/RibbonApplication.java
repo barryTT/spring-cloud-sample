@@ -1,4 +1,4 @@
-package org.springframework.cloud.sample.ribbon;
+package ribbon;
 
 import com.netflix.loadbalancer.Server;
 import com.netflix.loadbalancer.ServerList;

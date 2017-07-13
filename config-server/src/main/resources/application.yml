@@ -22,23 +22,6 @@ logging:
   level:
     root: info
 
-#eureka:
-#  instance:
-#    prefer-ip-address: true
-#  instance:
-#    hostname: bj05-ic-jks01
-#    lease-renewal-interval-in-seconds: 1
-#    lease-expiration-duration-in-seconds: 2
-#    status-page-url-path: ${server.context-path}/info
-#    health-check-url-path: ${server.context-path}/health
-
-
-#  server:
-#    wait-time-in-ms-when-sync-empty: 0
-#    number-of-replication-retries: 0
-#    enable-self-preservation: false
-#    renewal-percent-threshold: 0.01
-
 eureka:
   instance:
     prefer-ip-address: true
@@ -49,59 +32,62 @@ eureka:
 # config server parameter
       user: ${security.user.name}
       password: ${security.user.password}
+      zone: zone2
 #      configPath: /
-#    leaseRenewalIntervalInSeconds: 10
+#    hostname: bj05-ic-jks01
+#    lease-renewal-interval-in-seconds: 1
+#    lease-expiration-duration-in-seconds: 2
 #    ip-address: 192.168.137.101
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
-# must be in application.yml or application.properties
-    healthcheck:
-      enabled: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka
-
+    region: region1
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+#    prefer-same-zone-eureka: true
 
 
 spring:
+  profiles:
+    active: native
   cloud:
     config:
       server:
         native:
           search-locations: file:///${user.dir}/../config-repo
           fail-on-error: true
-      fail-fast: true
-
-  rabbitmq:
-    host: localhost
-
-  profiles:
-    active: native
-#      server:
 #        git:
 #          uri: https://github.com/barryTT/spring-cloud-sample.git
 #          search-paths: config-repo
 #          basedir: target/config
 #          clone-on-start: true
-# If you prefer to use DiscoveryClient to locate the Config Server, you can do that by setting spring.cloud.config.discovery.enabled=true (default "false")
-#      discovery:
-#        enabled: true
+#          force-pull: true
+      fail-fast: true
+    bus:
+      destination: bus
 
+  rabbitmq:
+    host: localhost
 
+---
+#spring:
+#  profiles: standalone
 #
-#---
-#spring:
-#  profiles: peer1
 #eureka:
-#  instance:
-#    hostname: peer1
-#---
-#spring:
-#  profiles: peer2
-#eureka:
-#  instance:
-#    hostname: peer2
-#---
-#spring:
-#  profiles: peer3
-#eureka:
-#  instance:
-#    hostname: peer3
+#  client:
+## must be in application.yml or application.properties
+#    healthcheck:
+#      enabled: true
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+
+---
+spring:
+  profiles: cloud
+
+eureka:
+  client:
+# must be in application.yml or application.properties
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka,http://peer2:8761/eureka,http://peer3:8761/eureka

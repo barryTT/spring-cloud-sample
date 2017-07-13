@@ -17,7 +17,7 @@ import java.util.List;
  * Created by barry on 2017/3/3.
  */
 @RestController
-public class FeiginController {
+public class FeignController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
