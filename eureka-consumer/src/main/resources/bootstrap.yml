@@ -15,6 +15,32 @@ spring:
         - enp0s8
 #        - enp0s9
         - docker0
+      preferred-networks:
+        - 192.168
+        - 172.20
+
+logging:
+  level:
+    root: debug
+    sun.rmi: info
+    sun.net: info
+    jdk.event: info
+    javax.xml: info
+    com.sun.jersey: info
+    com.netflix.discovery: debug
+    org.apache.tomcat: info
+    org.apache.coyote: info
+    org.apache.http: info
+    org.apache.http.wire: info
+    org.apache.http.headers: debug
+    org.apache.catalina: info
+    org.hibernate.validator: info
+    org.springframework.beans: info
+    org.springframework.security: info
+    org.springframework.boot: debug
+    org.springframework.boot.autoconfigure: info
+    org.springframework.web: debug
+    #    org.springframework.cloud: debug
 
 # must be in bootstrap.yml
 eureka:
@@ -22,18 +48,18 @@ eureka:
 #    hostname: localhost
 #    non-secure-port: 80
     prefer-ip-address: true
-    status-page-url-path: ${management.context-path}/info
-    health-check-url-path: ${management.context-path}/health
-    home-page-url-path: ${management.context-path}/
+    metadata-map:
+      zone: zone1
+  #    status-page-url-path: ${management.server.servlet.context-path}/info
+#    health-check-url-path: ${management.server.servlet.context-path}/health
+#    home-page-url-path: ${management.server.servlet.context-path}/
 #    lease-renewal-interval-in-seconds: 1
 #    lease-expiration-duration-in-seconds: 2
 #    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     region: region1
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka:123456@localhost:8761/eureka/
     prefer-same-zone-eureka: true
     availability-zones:
       region1: ${ACTIVE_ZONE:defaultZone}
-    healthcheck:
-      enabled: true

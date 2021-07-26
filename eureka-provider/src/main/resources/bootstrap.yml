@@ -17,6 +17,29 @@ spring:
         - enp0s8
 #        - enp0s9
         - docker0
+
+logging:
+  level:
+    root: info
+    sun.rmi: info
+    sun.net: info
+    jdk.event: info
+    javax.xml: info
+    com.sun.jersey: info
+    com.netflix.discovery: info
+    org.apache.tomcat: info
+    org.apache.coyote: info
+    org.apache.http: info
+    org.apache.http.wire: info
+    org.apache.http.headers: info
+    org.apache.catalina: info
+    org.hibernate.validator: info
+    org.springframework.beans: info
+    org.springframework.security: info
+    org.springframework.boot: debug
+    org.springframework.boot.autoconfigure: info
+    org.springframework.web: info
+    #    org.springframework.cloud: debug
 health:
   config:
     enabled: true
@@ -25,5 +48,10 @@ health:
 eureka:
   instance:
     metadata-map:
-      zone: zone1
+      zone: ${ZONE_NAME:zone1}
       weight: 10
+  client:
+    region: region1
+    service-url:
+      defaultZone: http://eureka:123456@localhost:8761/eureka/
+    prefer-same-zone-eureka: true

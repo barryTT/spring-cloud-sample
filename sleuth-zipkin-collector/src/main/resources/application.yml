@@ -21,7 +21,6 @@ spring:
 #            spring:
 #              rabbitmq:
 #                host: localhost
-
   sleuth:
     enabled: false
     stream:
@@ -29,6 +28,9 @@ spring:
         max-messages-per-poll: 100
     stream:
       group: zipkin
+  zipkin:
+    sender:
+      type: rabbit
 
 zipkin:
   storage:

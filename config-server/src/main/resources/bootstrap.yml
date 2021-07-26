@@ -9,5 +9,64 @@ spring:
         - enp0s8
 #        - enp0s9
         - docker0
+      preferred-networks:
+        - 192.168
+        - 172.20
+        - 10.168
+
+logging:
+  level:
+    root: debug
+    sun.rmi: info
+    jdk.event: info
+    javax.xml: info
+    com.netflix.config: info
+    com.netflix.eureka: off
+    com.netflix.discovery: info
+    com.sun.jersey: info
+    org.apache.http: info
+    org.apache.http.wire: info
+    org.apache.http.headers: info
+    org.apache.tomcat: info
+    org.apache.coyote: info
+    org.apache.catalina: info
+    org.hibernate.validator: info
+    org.springframework.beans: info
+    org.springframework.boot: debug
+    org.springframework.boot.autoconfigure: info
+    org.springframework.boot.web: debug
+    org.springframework.cloud: debug
+    org.springframework.web: debug
+    org.springframework.web.client: info
+    org.springframework.security: info
+
+
+eureka:
+  instance:
+    prefer-ip-address: false
+    #    status-page-url-path: ${management.context-path}/info
+    #    health-check-url-path: ${management.context-path}/health
+    #    home-page-url-path: ${management.context-path}/
+    metadata-map:
+      # config server parameter
+      user: ${spring.security.user.name}
+      password: ${spring.security.user.password}
+  #      zone: zone2
+  #      configPath: /
+  #    hostname: bj05-ic-jks01
+  #    lease-renewal-interval-in-seconds: 1
+  #    lease-expiration-duration-in-seconds: 2
+  #    ip-address: 192.168.137.101
+  #    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    region: region1
+    service-url:
+      defaultZone: http://eureka:123456@localhost:8761/eureka/
+    availability-zones:
+      defaultZone: region1
+      zone1: region1
+      zone2: region1
+#    prefer-same-zone-eureka: true
+
 
 

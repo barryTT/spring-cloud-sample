@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class CustomServerListFilter implements ServerListFilter<Server> {
     @Override
-    public List getFilteredListOfServers(List servers) {
-        return null;
+    public List<Server> getFilteredListOfServers(List servers) {
+        return servers;
     }
 }

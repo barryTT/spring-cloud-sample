@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
+import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.context.annotation.Bean;
 import zuul.provider.CustomZuulFallbackProvider;
 
@@ -20,7 +20,7 @@ public class ZuulApplication {
     }
 
     @Bean
-    public ZuulFallbackProvider zuulFallbackProvider() {
+    public FallbackProvider zuulFallbackProvider() {
         return new CustomZuulFallbackProvider();
     }
 }

@@ -3,24 +3,25 @@ info:
   description: Spring Cloud Samples
 
 management:
-  security:
-    enabled: false # default true
-  context-path: /_admin
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 eureka:
-  datacenter: eureka
-  environment: development
-#  instance:
+  instance:
 #    prefer-ip-address: true
 #    hostname: localhost
 #    lease-renewal-interval-in-seconds: 1
 #    lease-expiration-duration-in-seconds: 2
 #    status-page-url-path: ${server.context-path}/info
 #    health-check-url-path: ${server.context-path}/health
+    metadata-map:
+      user: ${spring.security.user.name}
+      password: ${spring.security.user.password}
 
-
-#  server:
-#    enable-self-preservation: false
+  server:
+    enable-self-preservation: false
 #    eviction-interval-timer-in-ms: 4000
 #    wait-time-in-ms-when-sync-empty: 0
 #    number-of-replication-retries: 0
@@ -38,14 +39,13 @@ eureka:
 spring:
   rabbitmq:
     host: localhost
-
-logging:
-  level:
-    root: info
-#    org.springframework.web: info
-#    org.springframework.cloud: debug
-#    com.netflix.discovery: 'off'
-
+  security:
+    user:
+      name: eureka
+      password: 123456
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
 
 ---
 spring:
@@ -54,12 +54,20 @@ spring:
 server:
   port: 8761
 
+management:
+  server:
+    servlet:
+      context-path: /_admin
+    port: 8861
+
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     register-with-eureka: false # Standalone Eureka Server
     fetch-registry: false # Standalone Eureka Server
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:8761/eureka/
 
 ---
 spring:
@@ -68,13 +76,19 @@ spring:
 server:
   port: 8761
 
+management:
+  server:
+    servlet:
+      context-path: /_admin
+    port: 8861
+
 eureka:
   instance:
     hostname: peer1
-    prefer-ip-address: true
+
   client:
     service-url:
-      defaultZone: http://peer2:8762/eureka/,http://peer3:8763/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@peer2:8762/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@peer3:8763/eureka/
 
 ---
 spring:
@@ -83,14 +97,19 @@ spring:
 server:
   port: 8762
 
+management:
+  server:
+    servlet:
+      context-path: /_admin
+    port: 8862
+
 eureka:
   instance:
     hostname: peer2
-    prefer-ip-address: true
 
   client:
     service-url:
-      defaultZone: http://peer1:8761/eureka/,http://peer3:8763/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@peer1:8761/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@peer3:8763/eureka/
 
 ---
 spring:
@@ -99,10 +118,15 @@ spring:
 server:
   port: 8763
 
+management:
+  server:
+    servlet:
+      context-path: /_admin
+    port: 8863
+
 eureka:
   instance:
     hostname: peer3
-    prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@peer1:8761/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@peer2:8762/eureka/

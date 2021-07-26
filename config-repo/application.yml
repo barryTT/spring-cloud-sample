@@ -5,8 +5,16 @@ spring:
     bus:
       destination: bus
 
-#endpoints:
-#  restart: enabled
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+#    restart:
+#      enabled: false
 
 
 eureka:
@@ -14,18 +22,18 @@ eureka:
 #    hostname: localhost
 #    non-secure-port: 80
     prefer-ip-address: true
-    status-page-url-path: ${management.context-path}/info
-    health-check-url-path: ${management.context-path}/health
-    home-page-url-path: ${management.context-path}/
+#    status-page-url-path: ${management.context-path}/info
+#    health-check-url-path: ${management.context-path}/health
+#    home-page-url-path: ${management.context-path}/
 #    lease-renewal-interval-in-seconds: 1
 #    lease-expiration-duration-in-seconds: 2
 #    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     region: region1
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-      zone1: http://peer1:8761/eureka/
-      zone2: http://peer2:8762/eureka/
+    serviceUrl:
+      defaultZone: http://eureka:123456@peer1:8761/eureka,http://eureka:123456@peer2:8761/eureka,http://eureka:123456@peer3:8761/eureka
+      zone1: http://eureka:123456@peer1:8761/eureka/
+      zone2: http://eureka:123456@peer2:8761/eureka/
     prefer-same-zone-eureka: true
     availability-zones:
       region1: ${ACTIVE_ZONE:defaultZone}
@@ -34,27 +42,33 @@ eureka:
       enabled: true
 
 logging:
-#  config: ${LOGBACK_CONFIG:http://${security.user.name:}:${security.user.password:}@localhost:8888/${spring.application.name}/${spring.profiles.active:default}/${spring.cloud.config.label:master}/logback.xml}
+  config: ${LOGBACK_CONFIG:http://${security.user.name:}:${security.user.password:}@localhost:8888/${spring.application.name}/${spring.profiles.active:default}/${spring.cloud.config.label:master}/logback.xml}
   level:
-    root: info
+    root: debug
+    sun.net: info
+    sun.rmi: info
+    jdk.event: info
+    javax.xml: info
+    com.netflix.config: info
+    com.netflix.eureka: off
+    com.netflix.discovery: info
+    com.netflix.loadbalancer: info
+    com.sun.jersey: info
+    org.apache.http: info
+    org.apache.http.wire: info
+    org.apache.http.headers: info
+    org.apache.tomcat: info
+    org.apache.coyote: info
+    org.apache.catalina: info
+    org.hibernate.validator: info
+    org.springframework.beans: info
+    org.springframework.boot: debug
+    org.springframework.boot.autoconfigure: info
+    org.springframework.boot.web: debug
+    org.springframework.core: info
+    org.springframework.cloud: debug
     org.springframework.cloud.config.client.ConfigServicePropertySourceLocator: warn
-
-
-#---
-#spring:
-#  profiles: peer1
-#eureka:
-#  instance:
-#    hostname: peer1
-#---
-#spring:
-#  profiles: peer2
-#eureka:
-#  instance:
-#    hostname: peer2
-#---
-#spring:
-#  profiles: peer3
-#eureka:
-#  instance:
-#    hostname: peer3
+    org.springframework.jmx: info
+    org.springframework.web: debug
+    org.springframework.web.client: info
+    org.springframework.security: info

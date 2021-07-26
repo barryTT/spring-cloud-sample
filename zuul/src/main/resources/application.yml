@@ -10,17 +10,3 @@ zuul:
     consumer: /consumer/**
     provider: /provider/**
     zuulserver: /self/**
-
-
-logging:
-  level:
-    root: info
-    org.apache.http.wire: debug
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-# must be in application.yml or application.properties
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka

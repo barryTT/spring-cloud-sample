@@ -20,15 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import ribbon.DefaultRibbonConfig;
 
+import javax.annotation.Resource;
+
 /**
  * Created by barry on 2016/8/18.
  */
 @RestController
 public class RibbonController {
-    @Autowired
+    @Resource
     private RestTemplate client;
 
-    @Autowired
+    @Resource
     private EurekaClient discoveryClient;
 
     @RequestMapping("/service")

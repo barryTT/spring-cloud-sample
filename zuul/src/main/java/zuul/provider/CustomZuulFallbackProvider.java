@@ -1,6 +1,6 @@
 package zuul.provider;
 
-import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
+import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,14 +13,14 @@ import java.io.InputStream;
 /**
  * Created by barry on 2017/4/10.
  */
-public class CustomZuulFallbackProvider implements ZuulFallbackProvider {
+public class CustomZuulFallbackProvider implements FallbackProvider {
     @Override
     public String getRoute() {
         return "zuulServer";
     }
 
     @Override
-    public ClientHttpResponse fallbackResponse() {
+    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
         return new ClientHttpResponse() {
             @Override
             public HttpStatus getStatusCode() throws IOException {

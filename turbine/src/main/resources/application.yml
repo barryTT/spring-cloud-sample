@@ -2,9 +2,9 @@ server:
   port: 8989
 
 management:
-  security:
-    enabled: false
-  context-path: /_admin
+  server:
+    servlet:
+      context-path: /_admin
 
 
 logging:

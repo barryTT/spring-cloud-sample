@@ -1,17 +1,14 @@
 package consumer.controller;
 
-import com.google.common.collect.Lists;
 import consumer.feign.MessageClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.security.SecureRandom;
-import java.util.List;
+import java.util.Collections;
 
 /**
  * Created by barry on 2017/3/3.
@@ -41,7 +38,7 @@ public class FeignController {
             throw new RuntimeException("random exception");
         }
 
-        return String.format("consumer random:%d, %s", random, client.sendMessage(Lists.<String>newArrayList()));
+        return String.format("consumer random:%d, %s", random, client.sendMessage(Collections.emptyList()));
     }
 
     @RequestMapping(path = "/exception")

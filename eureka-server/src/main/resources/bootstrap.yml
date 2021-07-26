@@ -14,3 +14,32 @@ spring:
         - enp0s8
 #        - enp0s9
         - docker0
+      preferred-networks:
+        - 192.168
+        - 172.20
+
+
+logging:
+  level:
+    root: debug
+    sun.rmi: info
+    jdk.event: info
+    javax.xml: info
+    com.netflix.config: info
+    com.netflix.eureka: off
+    com.netflix.discovery: info
+    com.sun.jersey: info
+    org.apache.http: info
+    org.apache.http.wire: info
+    org.apache.http.headers: info
+    org.apache.tomcat: info
+    org.apache.coyote: info
+    org.apache.catalina: info
+    org.hibernate.validator: info
+    org.springframework.beans: info
+    org.springframework.boot: debug
+    org.springframework.boot.autoconfigure: info
+    org.springframework.boot.web: debug
+    org.springframework.cloud: debug
+    org.springframework.web: debug
+    org.springframework.security: info

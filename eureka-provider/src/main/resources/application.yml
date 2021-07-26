@@ -3,12 +3,12 @@ info:
   description: Spring Cloud Samples
 
 server:
-  port: 5001
+  port: 5000
 management:
-#  port: 8991
-  security:
-    enabled: false
-  context-path: /_admin
+  server:
+    servlet:
+      context-path: /_admin
+    port: 5001
 
 spring:
 #  zipkin:

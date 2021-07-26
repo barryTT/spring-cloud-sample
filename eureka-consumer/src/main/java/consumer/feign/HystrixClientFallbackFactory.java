@@ -4,7 +4,7 @@ import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by barry on 2017/3/27.
@@ -18,7 +18,7 @@ public class HystrixClientFallbackFactory implements FallbackFactory<MessageClie
 
         return new MessageClient() {
             @Override
-            public String sendMessage(ArrayList<String> list) {
+            public String sendMessage(List<String> list) {
                 logger.error("create fail client", cause);
                 return "fallbackFactory";
             }
@@ -26,7 +26,7 @@ public class HystrixClientFallbackFactory implements FallbackFactory<MessageClie
             @Override
             public String exception() {
                 logger.error("create fail client", cause);
-                return "failbackFactory";
+                return "fallbackFactory";
             }
         };
     }

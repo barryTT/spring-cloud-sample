@@ -3,13 +3,13 @@ info:
   description: Spring Cloud Samples
 
 server:
-  port: 5002
+  port: 4000
 
 management:
-  security:
-    enabled: false
-  context-path: /_admin
-
+  server:
+    servlet:
+      context-path: /_admin
+    port: 4001
 
 spring:
 #  zipkin:
@@ -22,23 +22,16 @@ spring:
     scheduled:
       skip-pattern: org.springframework.cloud.netflix.hystrix.stream.HystrixStreamTask
 
-logging:
-  level:
-    root: info
-    org.apache.http.wire: debug
-
-#eureka:
+# eureka.client.healthcheck.enabled=true should only be set in application.yml.
+# Setting the value in bootstrap.yml causes undesirable side effects, such as registering in Eureka with an UNKNOWN status.
+eureka:
+  client:
+    healthcheck:
+      enabled: true
 #  instance:
 #    prefer-ip-address: true
 #    metadata-map:
 #      management.port: ${management.port}
-
-#eureka:
-#  instance:
-#    metadata-map:
-#      zone: activeZone
-#  client:
-#    prefer-same-zone-eureka: true
 
 #feign:
 #  hystrix:

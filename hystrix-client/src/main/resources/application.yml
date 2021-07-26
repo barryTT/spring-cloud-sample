@@ -17,6 +17,7 @@ hystrix:
     bus:
       enabled: true
 management:
-  security:
-    enabled: false
-  context-path: /_admin
+  server:
+    servlet:
+      context-path: /_admin
+    port: 9001
